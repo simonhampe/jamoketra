@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">JaMoKeTra</string>
     <string name="MainScreen_welcome_text">Noice</string>
+    <string name="go_button">Go!</string>
+    <string name="toggle_all_button">Toggle all</string>
+    <string name="jamoketra_title">JaMoKeTra</string>
 </resources>
