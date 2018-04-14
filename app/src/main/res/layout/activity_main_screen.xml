@@ -19,107 +19,51 @@
         android:weightSum="100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
-            android:id="@+id/toggleButtonLayout"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Minimum Length" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="TextView" />
+
+        <SeekBar
+            android:id="@+id/seekBar3"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="80"
-            android:baselineAligned="false"
-            android:orientation="vertical"
-            android:weightSum="100">
+            android:layout_weight="5"
+            android:max="10"
+            android:progress="3" />
 
-            <ToggleButton
-                android:id="@+id/toggleAllButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="@string/toggle_all_button" />
+        <SeekBar
+            android:id="@+id/seekBar2"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:max="10"
+            android:progress="3" />
 
-            <TableLayout
-                android:id="@+id/kanaToggleTable"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="95"
-                android:stretchColumns="*"
-                android:weightSum="100">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="33">
-
-                    <ToggleButton
-                        android:id="@+id/toggleButton12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ToggleButton" />
-
-                    <ToggleButton
-                        android:id="@+id/toggleButton13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ToggleButton" />
-
-                    <ToggleButton
-                        android:id="@+id/toggleButton14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ToggleButton" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="33">
-
-                    <ToggleButton
-                        android:id="@+id/toggleButton12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ToggleButton" />
-
-                    <ToggleButton
-                        android:id="@+id/toggleButton13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ToggleButton" />
-
-                    <ToggleButton
-                        android:id="@+id/toggleButton14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ToggleButton" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="33">
-
-                    <ToggleButton
-                        android:id="@+id/toggleButton12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ToggleButton" />
-
-                    <ToggleButton
-                        android:id="@+id/toggleButton13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ToggleButton" />
-
-                    <ToggleButton
-                        android:id="@+id/toggleButton14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ToggleButton" />
-                </TableRow>
-
-            </TableLayout>
-        </LinearLayout>
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:max="10"
+            android:progress="3" />
 
         <Button
             android:id="@+id/goButton"
