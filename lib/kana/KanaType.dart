@@ -1,6 +1,6 @@
 class KanaType{
 
-  final _characters;
+  final String _characters;
 
   const KanaType._internal(this._characters);
 
