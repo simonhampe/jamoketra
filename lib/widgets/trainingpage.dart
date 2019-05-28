@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jamoketra/kana/KanaType.dart';
 import 'package:jamoketra/kana/RandomKanaGenerator.dart';
-import 'package:jamoketra/widgets/mainpage.dart';
 
 class TrainingPage extends StatefulWidget {
   @override
@@ -9,8 +8,7 @@ class TrainingPage extends StatefulWidget {
 }
 
 class _TrainingPageState extends State<TrainingPage> {
-  final _formKey = GlobalKey<FormState>();
-  final generator = new RandomKanaGenerator(5, 10, KanaType.HIRAGANA);
+  final generator = new RandomKanaGenerator(1, 1, KanaType.HIRAGANA);
   bool _isDisabled = true;
   TextEditingController _inputController = new TextEditingController();
 
@@ -18,14 +16,20 @@ class _TrainingPageState extends State<TrainingPage> {
 
   @override
   void initState() {
-    setText();
+    resetText();
     _inputController.addListener(onInputChange);
   }
 
-  void setText() {
+  void resetText() {
     toType = generator.generate();
     _inputController.text = "";
     _isDisabled = true;
+  }
+
+  void resetTextStatefully() {
+    setState(() {
+      resetText();
+    });
   }
 
   void onInputChange() {
@@ -43,38 +47,23 @@ class _TrainingPageState extends State<TrainingPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(toType),
-                  TextFormField(controller: _inputController),
-                  RaisedButton(
-                      onPressed: _isDisabled
-                          ? null
-                          : () {
-                              setState(() {
-                                setText();
-                              });
-                            },
-                      child: Text("Next")),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      RaisedButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MainPage()));
-                          },
-                          child: Text("Cancel"))
-                    ],
-                  )
-                ],
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(toType),
+                TextFormField(controller: _inputController),
+                RaisedButton(
+                    onPressed: _isDisabled ? null : resetTextStatefully,
+                    child: Text("Next")),
+                RaisedButton(
+                    onPressed: resetTextStatefully, child: Text("Skip")),
+                RaisedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Cancel"))
+              ],
             ),
           ],
         ),
