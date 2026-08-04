@@ -18,6 +18,13 @@ This is the only path that actually exercises what this app is built to test
 -- a real Japanese IME.
 
 1. Install **Expo Go** from the Play Store on the phone.
+   The Play Store build can lag the project's Expo SDK version by weeks
+   (this project pins `expo: ~57.0.10` in `package.json`) -- if scanning the
+   QR code below complains that the project needs a newer Expo Go, the
+   Play Store hasn't caught up yet. Sideload the matching build instead:
+   open `https://expo.dev/go?sdkVersion=<SDK major version>&platform=android&device=true`
+   on the phone (or scan its QR code), download the linked APK, and install
+   it (Android will prompt to allow "install unknown apps" on first use).
 2. Install **Gboard**, add Japanese as an input language, and switch it to
    **kana/flick input** (not romaji) before opening the app.
 3. On this machine, run:
