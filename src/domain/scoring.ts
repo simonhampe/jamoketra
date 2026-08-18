@@ -6,6 +6,7 @@ export interface WordResult {
 
 export interface SessionSummary {
   wordsCompleted: number;
+  wordsCorrect: number;
   totalMorae: number;
   totalErrors: number;
   accuracy: number;
@@ -22,6 +23,7 @@ export function summarizeSession(
 
   return {
     wordsCompleted: results.length,
+    wordsCorrect: results.filter((r) => r.errorCount === 0).length,
     totalMorae,
     totalErrors,
     accuracy: attempted === 0 ? 1 : totalMorae / attempted,

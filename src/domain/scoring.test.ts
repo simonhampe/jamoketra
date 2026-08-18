@@ -9,6 +9,7 @@ describe("summarizeSession", () => {
     ];
     const summary = summarizeSession(results, 10);
     expect(summary.wordsCompleted).toBe(2);
+    expect(summary.wordsCorrect).toBe(2);
     expect(summary.totalMorae).toBe(5);
     expect(summary.totalErrors).toBe(0);
     expect(summary.accuracy).toBe(1);
@@ -19,6 +20,17 @@ describe("summarizeSession", () => {
     const results: WordResult[] = [{ word: "さくら", moraeCount: 3, errorCount: 1 }];
     const summary = summarizeSession(results, 5);
     expect(summary.accuracy).toBeCloseTo(3 / 4);
+    expect(summary.wordsCorrect).toBe(0);
+  });
+
+  it("counts only error-free words as correct", () => {
+    const results: WordResult[] = [
+      { word: "さくら", moraeCount: 3, errorCount: 0 },
+      { word: "きょう", moraeCount: 2, errorCount: 1 },
+    ];
+    const summary = summarizeSession(results, 5);
+    expect(summary.wordsCompleted).toBe(2);
+    expect(summary.wordsCorrect).toBe(1);
   });
 
   it("returns accuracy 1 and moraePerSecond 0 for an empty session", () => {
@@ -26,6 +38,7 @@ describe("summarizeSession", () => {
     expect(summary.accuracy).toBe(1);
     expect(summary.moraePerSecond).toBe(0);
     expect(summary.totalMorae).toBe(0);
+    expect(summary.wordsCorrect).toBe(0);
   });
 
   it("does not divide by zero when elapsedSeconds is 0 but morae exist", () => {

@@ -16,6 +16,10 @@ export default function Results() {
 
         {summary ? (
           <>
+            <Stat
+              label="Words correct"
+              value={`${summary.wordsCorrect}/${summary.wordsCompleted}`}
+            />
             <Stat label="Words completed" value={String(summary.wordsCompleted)} />
             <Stat label="Morae / sec" value={summary.moraePerSecond.toFixed(2)} />
             <Stat label="Accuracy" value={`${Math.round(summary.accuracy * 100)}%`} />
