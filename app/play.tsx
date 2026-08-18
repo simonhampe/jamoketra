@@ -49,11 +49,11 @@ export default function Play() {
   const errorCount = comparison?.errorCount ?? 0;
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white dark:bg-black">
       <Pressable className="flex-1" onPress={() => inputRef.current?.focus()}>
         <View className="flex-row justify-between px-6 pt-4">
-          <Text className="text-lg font-mono">{secondsLeft !== null ? `${secondsLeft}s` : ""}</Text>
-          <Text className="text-lg font-mono text-red-600">errors: {errorCount}</Text>
+          <Text className="text-lg font-mono text-black dark:text-white">{secondsLeft !== null ? `${secondsLeft}s` : ""}</Text>
+          <Text className="text-lg font-mono text-red-600 dark:text-red-400">errors: {errorCount}</Text>
         </View>
         <View className="flex-1 justify-center items-center px-4">
           {comparison && <KanaDisplay comparison={comparison} />}

@@ -10,9 +10,9 @@ export default function Results() {
   const reset = useSessionStore((s) => s.reset);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white dark:bg-black">
       <View className="flex-1 justify-center items-center px-8 gap-4">
-        <Text className="text-3xl font-bold mb-4">Round complete</Text>
+        <Text className="text-3xl font-bold mb-4 text-black dark:text-white">Round complete</Text>
 
         {summary ? (
           <>
@@ -22,17 +22,17 @@ export default function Results() {
             <Stat label="Errors" value={String(summary.totalErrors)} />
           </>
         ) : (
-          <Text className="text-gray-500">No summary available.</Text>
+          <Text className="text-gray-500 dark:text-gray-400">No summary available.</Text>
         )}
 
         <Pressable
-          className="bg-black rounded-full px-8 py-4 mt-8"
+          className="bg-black dark:bg-white rounded-full px-8 py-4 mt-8"
           onPress={() => {
             reset();
             router.replace("/play");
           }}
         >
-          <Text className="text-white text-lg font-semibold">Play again</Text>
+          <Text className="text-white dark:text-black text-lg font-semibold">Play again</Text>
         </Pressable>
         <Pressable
           onPress={() => {
@@ -40,7 +40,7 @@ export default function Results() {
             router.replace("/");
           }}
         >
-          <Text className="text-gray-500 text-base mt-2">Back to start</Text>
+          <Text className="text-gray-500 dark:text-gray-400 text-base mt-2">Back to start</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -50,8 +50,8 @@ export default function Results() {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <View className="flex-row justify-between w-full">
-      <Text className="text-base text-gray-600">{label}</Text>
-      <Text className="text-base font-semibold">{value}</Text>
+      <Text className="text-base text-gray-600 dark:text-gray-300">{label}</Text>
+      <Text className="text-base font-semibold text-black dark:text-white">{value}</Text>
     </View>
   );
 }
