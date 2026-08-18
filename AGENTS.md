@@ -73,11 +73,12 @@ app/   expo-router screens: index (onboarding) -> play (session) -> results
   pulls in radix-ui-based web devtools that conflict on `react`/`react-dom`
   peer versions, unrelated to anything we actually use on-device. Fixed with
   a project-level `.npmrc` (`legacy-peer-deps=true`). Keep that file.
-- **Vitest 4 / vite 8 (rolldown-vite) fails to start on Windows**: `Cannot
-  find module '@rolldown/binding-wasm32-wasi'` -- optional native binding
-  doesn't resolve for this platform/Node combo. Pinned `vitest` to `^3` in
-  `package.json`, which uses the stable esbuild-based Vite. If bumping
-  Vitest, check this doesn't come back before assuming it's fixed upstream.
+- **Vitest 4 / vite 8 (rolldown-vite) used to fail to start on Windows**:
+  `Cannot find module '@rolldown/binding-wasm32-wasi'` -- optional native
+  binding didn't resolve under Node 20.13.1 on this platform. No longer
+  reproduces under Node 26.7.0 (see `.nvmrc`); `vitest` is back on `^4`.
+  If it comes back on some Node/platform combo, drop back to `^3`
+  (esbuild-based Vite, no native binding) as a workaround.
 - **NativeWind 4.2.6 + Tailwind v4**: `expo install nativewind tailwindcss`
   grabs Tailwind v4 by default, but NativeWind 4's documented setup
   (`tailwind.config.js` + PostCSS pipeline) targets Tailwind v3. Pinned
@@ -86,11 +87,10 @@ app/   expo-router screens: index (onboarding) -> play (session) -> results
   not just transitive -- `expo install expo-router` alone doesn't pull them
   in on this version; `npx expo export` fails with "Unable to resolve module
   expo-linking" until they're installed explicitly.
-- **Node is 20.13.1, react-native 0.86.2 / metro want >=20.19.4.** It's a
-  warning during install/bundle, not currently a hard failure --
-  `npx expo export --platform android` bundles clean on this version. If
-  something breaks in a way that smells Node-related, upgrading Node is the
-  first thing to try, not a rabbit hole to debug around.
+- **Node version is pinned via `.nvmrc` (currently 26.7.0).** Originally
+  bootstrapped on 20.13.1, which react-native 0.86.2 / metro warned was
+  below their wanted `>=20.19.4` (never a hard failure, just a warning).
+  Upgraded via nvm; run `nvm use` before working in this repo.
 - **JS class field initializers run before constructor-parameter-property
   assignment.** `SessionRunner` originally had
   `private readonly rng = mulberry32(this.config.seed)` as a field
